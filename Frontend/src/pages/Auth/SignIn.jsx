@@ -57,88 +57,72 @@ export default function SignIn() {
   }
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left side - Form */}
-      <div className="flex-1 flex items-center justify-center p-8 bg-gradient-to-br from-primary-50 to-white">
-        <Card className="w-full max-w-md shadow-lg">
-          <CardHeader className="space-y-1 text-center">
-            <div className="flex justify-center mb-4">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center">
-                <LogIn className="text-white" size={32} />
-              </div>
+    <div className="min-h-screen flex items-center justify-center bg-background p-8">
+      <Card className="w-full max-w-md shadow-lg border-border">
+        <CardHeader className="space-y-1 text-center">
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center">
+              <LogIn className="text-primary-foreground" size={32} />
             </div>
-            <CardTitle className="text-3xl font-bold">Welcome Back</CardTitle>
-            <CardDescription>
-              Sign in to your Dayflow account
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={20} />
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    className="pl-10"
-                    {...register('email')}
-                  />
-                </div>
-                {errors.email && (
-                  <p className="text-sm text-red-500">{errors.email.message}</p>
-                )}
+          </div>
+          <CardTitle className="text-3xl font-bold text-foreground">Welcome Back</CardTitle>
+          <CardDescription className="text-muted-foreground">
+            Sign in to your Dayflow account
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-foreground">Email</Label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={20} />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  className="pl-10 bg-input text-foreground border-border"
+                  {...register('email')}
+                />
               </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={20} />
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="••••••••"
-                    className="pl-10"
-                    {...register('password')}
-                  />
-                </div>
-                {errors.password && (
-                  <p className="text-sm text-red-500">{errors.password.message}</p>
-                )}
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600"
-                disabled={loading}
-              >
-                {loading ? 'Signing in...' : 'Sign In'}
-              </Button>
-            </form>
-
-            <div className="mt-6 text-center text-sm">
-              <span className="text-muted-foreground">Don't have an account? </span>
-              <Link to="/signup" className="text-primary hover:text-primary/80 font-medium">
-                Sign up
-              </Link>
+              {errors.email && (
+                <p className="text-sm text-destructive">{errors.email.message}</p>
+              )}
             </div>
-          </CardContent>
-        </Card>
-      </div>
 
-      {/* Right side - Branding */}
-      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-primary-600 via-primary-500 to-secondary-600 items-center justify-center p-12">
-        <div className="text-white text-center max-w-md">
-          <h1 className="text-5xl font-bold mb-4">Dayflow</h1>
-          <p className="text-xl mb-8 opacity-90">
-            Every workday, perfectly aligned.
-          </p>
-          <p className="text-lg opacity-80">
-            Streamline your HR operations with our comprehensive management system.
-          </p>
-        </div>
-      </div>
+            <div className="space-y-2">
+              <Label htmlFor="password" className="text-foreground">Password</Label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={20} />
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  className="pl-10 bg-input text-foreground border-border"
+                  {...register('password')}
+                />
+              </div>
+              {errors.password && (
+                <p className="text-sm text-destructive">{errors.password.message}</p>
+              )}
+            </div>
+
+            <Button
+              type="submit"
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+              disabled={loading}
+            >
+              {loading ? 'Signing in...' : 'Sign In'}
+            </Button>
+          </form>
+
+          <div className="mt-6 text-center text-sm">
+            <span className="text-muted-foreground">Don't have an account? </span>
+            <Link to="/signup" className="text-primary hover:text-primary/80 font-medium">
+              Sign up
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }
